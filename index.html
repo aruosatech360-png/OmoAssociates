@@ -53,21 +53,29 @@
   <div id="loading-overlay" class="fixed inset-0 bg-slate-50 z-50 flex items-center justify-center">
     <img src="OmoAssociates.png" alt="OmoAssociates Logo" class="h-20 w-20 animate-custom-bounce">
   </div>
-  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b">
-    <div class="mx-auto max-w-7xl px-4 py-4 flex items-center justify-between">
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b md:relative">
+    <div class="mx-auto max-w-7xl px-4 py-4 flex items-center justify-between ">
       <a href="#" class="flex items-center gap-3">
        <img src="OmoAssociates.png" alt="OmoAssociates Logo" class="h-10 w-10 object-contain">
         <span class="text-xl sm:text-2xl font-extrabold text-primary">OmoAssociates</span>
       </a>
-      <div class="flex items-center gap-4">
-        <div id="user-info" class="text-xs text-slate-600">Not signed in</div>
-        <div id="auth-controls" class="flex gap-2 items-center text-sm">
-          <input id="username" type="text" placeholder="Username" class="px-2 py-1 border rounded text-xs">
-          <input id="email" type="email" placeholder="Email" class="px-2 py-1 border rounded text-xs">
-          <input id="password" type="password" placeholder="Password" class="px-2 py-1 border rounded text-xs">
-          <button id="signup" class="px-2 py-1 bg-green-700 text-white rounded">Sign Up</button>
-          <button id="signin" class="px-2 py-1 bg-blue-700 text-white rounded">Sign In</button>
-          <button id="signout" class="px-2 py-1 border rounded">Sign Out</button>
+      <!-- Mobile Menu Button -->
+      <button id="menu-toggle" class="md:hidden p-2 rounded-md text-slate-600 hover:bg-slate-100">
+        <svg id="menu-open-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        <svg id="menu-close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+      <!-- Navigation Content -->
+      <div id="nav-content" class="hidden md:flex flex-col md:flex-row items-stretch md:items-center gap-4 absolute md:relative top-full left-0 w-full md:w-auto bg-white/95 md:bg-transparent backdrop-blur md:backdrop-filter-none border-b md:border-none p-4 md:p-0 shadow-lg md:shadow-none">
+        <div id="user-info" class="text-sm md:text-xs text-slate-600 text-center md:text-left border-b md:border-none pb-2 md:pb-0 mb-2 md:mb-0">Not signed in</div>
+        <div id="auth-controls" class="flex flex-col md:flex-row gap-3 md:gap-2 items-center text-sm w-full">
+          <input id="username" type="text" placeholder="Username" class="w-full md:w-auto px-2 py-1 border rounded text-xs">
+          <input id="email" type="email" placeholder="Email" class="w-full md:w-auto px-2 py-1 border rounded text-xs">
+          <input id="password" type="password" placeholder="Password" class="w-full md:w-auto px-2 py-1 border rounded text-xs">
+          <div class="flex gap-2 w-full md:w-auto">
+            <button id="signup" class="flex-1 md:flex-none px-2 py-1 bg-green-700 text-white rounded">Sign Up</button>
+            <button id="signin" class="flex-1 md:flex-none px-2 py-1 bg-blue-700 text-white rounded">Sign In</button>
+          </div>
+          <button id="signout" class="w-full md:w-auto px-2 py-1 border rounded">Sign Out</button>
         </div>
         <button id="admin-button" class="text-xs px-3 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-100" style="display:none;">Admin</button>
       </div>
@@ -517,6 +525,19 @@ function render(list) {
 
     // Set year in footer
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const menuToggle = $("#menu-toggle");
+    const navContent = $("#nav-content");
+    const openIcon = $("#menu-open-icon");
+    const closeIcon = $("#menu-close-icon");
+
+    menuToggle.addEventListener("click", () => {
+      navContent.classList.toggle("hidden");
+      openIcon.classList.toggle("hidden");
+      closeIcon.classList.toggle("hidden");
+    });
+
 
     document.addEventListener("DOMContentLoaded", () => {
   // ...all your script code here...
