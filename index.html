@@ -327,7 +327,7 @@
       modal.innerHTML = `
         <div class="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] flex flex-col">
           <div class="p-4 border-b flex justify-between items-center">
-            <h3 class="text-xl font-bold text-primary">${p.title}</h3>
+            <h3 class="text-xl font-bold text-primary break-words mr-4">${p.title}</h3>
             <button id="close-modal" class="text-2xl font-light text-slate-500 hover:text-slate-800">&times;</button>
           </div>
           <div class="p-4 overflow-y-auto">
@@ -344,13 +344,13 @@
             </div>
             <div class="space-y-3 text-slate-800">
               <p class="text-2xl font-bold text-green-700">₦${Number(p.price||0).toLocaleString()}</p>
-              <p class="text-slate-700">${p.details || ""}</p>
-              <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-slate-600">
+              <p class="text-slate-700 break-words">${p.details || ""}</p>
+              <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-slate-600 break-words">
                 ${p.beds ? `<span>🛏️ ${p.beds} Beds</span>` : ""}
                 ${p.baths ? `<span>🛁 ${p.baths} Baths</span>` : ""}
                 ${p.sqft ? `<span>📐 ${p.sqft} sqft</span>` : ""}
               </div>
-              ${p.location ? `<p class="text-slate-600">📍 ${p.location}</p>` : ""}
+              ${p.location ? `<p class="text-slate-600 break-words">📍 ${p.location}</p>` : ""}
             </div>
           </div>
         </div>
@@ -408,9 +408,9 @@ function render(list) {
             <button data-fav class="absolute top-3 right-3 rounded-full bg-white/90 p-2 border">${isFav ? "★" : "☆"}</button>
           </div>
           <div class="p-4 flex-1 flex flex-col">
-            <h4 class="text-lg font-bold text-primary">${p.title}</h4>
-            <p class="text-slate-600 text-sm mt-1">${p.details || ""}</p>
-            <div class="text-slate-600 text-sm mt-2 flex flex-wrap gap-3">
+            <h4 class="text-lg font-bold text-primary break-words">${p.title}</h4>
+            <p class="text-slate-600 text-sm mt-1 break-words">${p.details || ""}</p>
+            <div class="text-slate-600 text-sm mt-2 flex flex-wrap gap-3 break-words">
               ${p.beds ? `<span>🛏️ ${p.beds}</span>` : ""}
               ${p.baths ? `<span>🛁 ${p.baths}</span>` : ""}
               ${p.sqft ? `<span>📐 ${p.sqft} sqft</span>` : ""}
