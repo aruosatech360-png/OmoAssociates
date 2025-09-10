@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Find Your Dream Home with OmoAssociates" />
+  <meta name="author" content="OmoAssociates" />
+  <title>OmoAssociates — Find Your Dream Home</title>
+   <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          primary: '#0B2447',
+          secondary: '#1A5D1A',
+          accent: '#FBBF24',
+          ink: '#0f172a'
+        },
+        fontFamily: { inter: ['Inter', 'ui-sans-serif', 'system-ui'] }
+      }
+    }
+  };
+</script>
+<script src="https://cdn.tailwindcss.com"></script>
+  <style>
+  body { font-family: 'Inter', sans-serif; }
+  .glass { background: rgba(255,255,255,0.85); backdrop-filter: blur(8px); }
+  #loading-overlay {
+    transition: opacity 0.5s ease-out;
+  }
+  @keyframes custom-bounce {
+    0%, 100% {
+      transform: translateY(-25%);
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+      transform: translateY(0);
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+  .animate-custom-bounce { animation: custom-bounce 1s infinite; }
+  </style>
+
+</head>
+<body class="bg-slate-50 text-slate-800">
+  <div id="loading-overlay" class="fixed inset-0 bg-slate-50 z-50 flex items-center justify-center">
+    <img src="OmoAssociates.png" alt="OmoAssociates Logo" class="h-20 w-20 animate-custom-bounce">
+  </div>
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b">
+    <div class="mx-auto max-w-7xl px-4 py-4 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+       <img src="OmoAssociates.png" alt="OmoAssociates Logo" class="h-10 w-10 object-contain">
+        <span class="text-xl sm:text-2xl font-extrabold text-primary">OmoAssociates</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <div id="user-info" class="text-xs text-slate-600">Not signed in</div>
+        <div id="auth-controls" class="flex gap-2 items-center text-sm">
+          <input id="username" type="text" placeholder="Username" class="px-2 py-1 border rounded text-xs">
+          <input id="email" type="email" placeholder="Email" class="px-2 py-1 border rounded text-xs">
+          <input id="password" type="password" placeholder="Password" class="px-2 py-1 border rounded text-xs">
+          <button id="signup" class="px-2 py-1 bg-green-700 text-white rounded">Sign Up</button>
+          <button id="signin" class="px-2 py-1 bg-blue-700 text-white rounded">Sign In</button>
+          <button id="signout" class="px-2 py-1 border rounded">Sign Out</button>
+        </div>
+        <button id="admin-button" class="text-xs px-3 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-100" style="display:none;">Admin</button>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Hero Section -->
+  <section class="relative">
+    <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=2400&auto=format&fit=crop" class="w-full h-[70vh] object-cover" alt="Hero image">
+    <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
+      <div class="text-center text-white px-4">
+        <h1 class="text-3xl sm:text-5xl font-extrabold">Find Your Dream Home with OmoAssociates</h1>
+        <p class="mt-3 sm:text-lg text-gray-200">Trusted real estate services across Nigeria.</p>
+        <a href="#properties" class="mt-6 inline-block bg-yellow-400 text-black font-semibold px-6 py-3 rounded-lg hover:bg-yellow-300">Browse Listings</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- our services -->
+  <section class="mx-auto max-w-7xl px-4 py-16">
+    <h2 class="text-3xl font-bold text-center text-primary mb-10">Our Services</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+      <div class="p-6 bg-white rounded-2xl shadow"><h3 class="font-bold text-lg text-green-700 mb-2">Property Sales</h3><p class="text-slate-600">Buy and sell properties with confidence. Verified listings and transparent deals.</p></div>
+      <div class="p-6 bg-white rounded-2xl shadow"><h3 class="font-bold text-lg text-green-700 mb-2">Rentals</h3><p class="text-slate-600">Affordable rental options across Nigeria, with easy agreements and trusted landlords.</p></div>
+      <div class="p-6 bg-white rounded-2xl shadow"><h3 class="font-bold text-lg text-green-700 mb-2">Consulting</h3><p class="text-slate-600">Expert real estate advice, investment consulting, and property management services.</p></div>
+    </div>
+  </section>
+
+  <!-- featured properties -->
+  <section class="mx-auto max-w-7xl px-4 py-12" id="properties">
+    <div class="flex flex-wrap items-end justify-between gap-4 mb-4">
+      <h2 class="text-2xl sm:text-3xl font-bold text-primary">Featured Properties</h2>
+      <select id="sort-select" class="px-3 py-2 rounded-lg border text-sm">
+        <option value="recent">Sort: Recent</option>
+        <option value="low">Sort: Price (Low → High)</option>
+        <option value="high">Sort: Price (High → Low)</option>
+      </select>
+    </div>
+    <!-- Filters -->
+    <form id="filters" class="mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+      <input id="filter-search" type="text" placeholder="Search title or details..." class="w-full px-3 py-2 rounded-lg border lg:col-span-2">
+      <select id="filter-type" class="w-full px-3 py-2 rounded-lg border">
+        <option value="">Any type</option>
+        <option value="house">House</option>
+        <option value="apartment">Apartment</option>
+        <option value="duplex">Duplex</option>
+        <option value="land">Land</option>
+      </select>
+      <input id="filter-min" type="number" min="10000" placeholder="Min price (e.g. 10,000)" class="w-full px-3 py-2 rounded-lg border">
+      <input id="filter-max" type="number" min="10000" placeholder="Max price" class="w-full px-3 py-2 rounded-lg border">
+    </form>
+    <div id="properties-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    <div id="empty" class="hidden col-span-full text-center text-slate-500 mt-6">No properties found.</div>
+  </section>
+
+
+  <!-- Testimonials -->
+  <section class="bg-slate-100 py-16">
+    <div class="mx-auto max-w-7xl px-4">
+      <h2 class="text-3xl font-bold text-center text-primary mb-10">What Our Clients Say</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="p-6 bg-white rounded-2xl shadow"><p class="italic text-slate-600">“OmoAssociates made buying our first home stress-free. Highly recommended!”</p><p class="mt-4 font-semibold text-green-700">— Chinedu, Lagos</p></div>
+        <div class="p-6 bg-white rounded-2xl shadow"><p class="italic text-slate-600">“Professional, trustworthy, and always available to help. Great service.”</p><p class="mt-4 font-semibold text-green-700">— Aisha, Abuja</p></div>
+        <div class="p-6 bg-white rounded-2xl shadow"><p class="italic text-slate-600">“We found our dream duplex in Ibadan through OmoAssociates. Smooth process!”</p><p class="mt-4 font-semibold text-green-700">— Tunde, Ibadan</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- admin panel -->
+  <section id="admin-panel" class="mx-auto max-w-7xl px-4 pb-16 hidden">
+    <div class="bg-white border rounded-2xl shadow-sm p-6">
+      <h3 class="text-xl font-bold text-primary mb-4">Add a Property</h3>
+      <form id="add-form" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <input class="px-3 py-2 rounded-lg border" name="title" placeholder="Title" required>
+        <input class="px-3 py-2 rounded-lg border" name="type" placeholder="Type (e.g. house, land)" required>
+        <input class="px-3 py-2 rounded-lg border" name="location" placeholder="Location" required>
+        <input class="px-3 py-2 rounded-lg border" type="number" name="price" placeholder="Price" required min="10000">
+        <input class="px-3 py-2 rounded-lg border" type="number" name="beds" placeholder="Beds">
+        <input class="px-3 py-2 rounded-lg border" type="number" name="baths" placeholder="Baths">
+        <input class="px-3 py-2 rounded-lg border" type="number" name="sqft" placeholder="Sqft">
+        <input class="px-3 py-2 rounded-lg border col-span-2" name="details" placeholder="Short details" required>
+        <input class="px-3 py-2 rounded-lg border col-span-2" type="url" name="imageUrl" placeholder="Image URL">
+<input class="px-3 py-2 rounded-lg border col-span-2" type="url" name="extraImages" placeholder="Extra image URLs (comma separated)">
+        <input class="px-3 py-2 rounded-lg border col-span-2" type="text" name="extraImages" placeholder="Extra image URLs (comma-separated)">
+        <button class="bg-green-700 text-white px-4 py-2 rounded-lg hover:opacity-90 col-span-2" type="submit">Save Property</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section class="bg-white border-t">
+    <div class="mx-auto max-w-7xl px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div><h3 class="text-2xl font-bold text-primary">Talk to us</h3><p class="text-slate-600 mt-1">Want to let out/sell your property? Drop us a message and we’ll get back quickly.</p>
+        <ul class="mt-6 text-slate-600 space-y-2">
+          <li><strong>Phone:</strong> <a href="https://wa.me/+2349139015507" target="_blank" rel="noopener noreferrer" class="hover:underline text-blue-700">OmoAssociates Staff</a></li>
+          <li><strong>Email:</strong> <a href="mailto:info@omoassociates.com" class="hover:underline text-blue-700">info@omoassociates.com</a></li>
+          <li><strong>Office:</strong> <a href="https://maps.app.goo.gl/HpwYzY2axxZT4TMr9?g_st=aw" target="_blank" rel="noopener noreferrer" class="hover:underline text-blue-700">OmoAssociates Office</a></li>
+        </ul>
+      </div>
+     <form id="contact-form" action="https://formspree.io/f/mgvldpao" method="POST" class="bg-slate-50 border rounded-2xl p-6 grid grid-cols-1 gap-3">
+        <input class="px-3 py-2 rounded-lg border" name="name" placeholder="Your name" required>
+        <input class="px-3 py-2 rounded-lg border" type="email" name="email" placeholder="Email" required>
+        <textarea class="px-3 py-2 rounded-lg border" name="message" rows="4" placeholder="Message" required></textarea>
+        <button class="bg-blue-700 text-white px-4 py-2 rounded-lg hover:bg-blue-900" type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+
+<!-- About Us -->
+<section class="bg-slate-100 border-t">
+  <div class="mx-auto max-w-7xl px-4 py-16">
+    <h2 class="text-2xl sm:text-3xl font-bold text-primary text-center">About Us</h2>
+    <p class="mt-3 text-slate-700 max-w-2xl mx-auto text-center">
+      At OmoAssociates, we believe in more than just transactions — we create connections. 
+      With years of experience in real estate, We wear transparency like a gold medal, 
+      providing Real estate services wholistically. 
+      By putting client's satisfaction first. We tell you what you ought to know, not necessarily what you want to hear, know or do. 
+      We would rather forfeit the reward, than leave your mouth sour. Giving you the best and most rewarding real estate experience. 
+      Our mission is to guide you through one of the most important decisions of your life with honesty, clarity, and dedication. 
+      From modern apartments to sprawling family homes, we’re here to help you find the right place to call your own.
+    </p>
+
+    <!-- Team Section -->
+    <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="bg-white shadow-sm rounded-xl p-6 text-center">
+        <img src="Mr C. Omo Osaghae.jpg" alt="Team member" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+        <h4 class="text-lg font-semibold text-primary">Mr C. Omo Osaghae</h4>
+        <p class="text-slate-600 text-sm">Founder & CEO</p>
+      </div>
+      <div class="bg-white shadow-sm rounded-xl p-6 text-center">
+        <img src="Edwin Ihama.jpg" alt="Team member" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+        <h4 class="text-lg font-semibold text-primary">Edwin Ihama</h4>
+        <p class="text-slate-600 text-sm">Head of Operations</p>
+      </div>
+      <div class="bg-white shadow-sm rounded-xl p-6 text-center">
+        <img src="Mercy Otsonu.jpg" alt="Team member" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+        <h4 class="text-lg font-semibold text-primary">Mercy Otsonu</h4>
+        <p class="text-slate-600 text-sm">Client Relations Manager</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <footer class="py-10 text-center text-slate-500 text-sm"><p>&copy; <span id="year"></span> OmoAssociates. All rights reserved.</p></footer>
+
+  <!--Bouncing Logo -->
+  <div class="py-8 flex justify-center">
+    <img src="OmoAssociates.png" alt="OmoAssociates Logo" class="h-12 w-12 animate-custom-bounce opacity-70">
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+    import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp, doc, setDoc, getDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB5ewbPLQ03-Ca0X2FqW8zWenNKiJ8qPPA",
+      authDomain: "omoassociates-abef5.firebaseapp.com",
+      projectId: "omoassociates-abef5",
+      storageBucket: "omoassociates-abef5.firebasestorage.app",
+      messagingSenderId: "607299609979",
+      appId: "1:607299609979:web:225019cba779effcfc09de",
+      measurementId: "G-8X78QG571M"
+    };
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+    let USER = null;
+    let ADMIN = false;
+    let PROPERTIES = [];
+    const $ = (q) => document.querySelector(q);
+    const toast = (msg) => alert(msg);
+
+    const hideLoader = () => {
+      const loader = $("#loading-overlay");
+      if (loader) {
+        loader.style.opacity = '0';
+        setTimeout(() => {
+          loader.style.display = 'none';
+        }, 500); // Corresponds to CSS transition duration
+      }
+    };
+
+    $("#signup").addEventListener("click", async () => {
+      const username = $("#username").value.trim();
+      const email = $("#email").value, pass = $("#password").value;
+      if (!username) { toast("Please enter a username"); return; }
+      try {
+        const cred = await createUserWithEmailAndPassword(auth, email, pass);
+        // Use setDoc to create a document with the user's UID as the ID
+        await setDoc(doc(db, "users", cred.user.uid), {
+          email,
+          username,
+          createdAt: serverTimestamp()
+        });
+        toast("Signed up as " + username);
+      } catch (e) { toast(e.message); }
+    });
+
+    $("#signin").addEventListener("click", async () => {
+      const e = $("#email").value, p = $("#password").value;
+      try {
+        await signInWithEmailAndPassword(auth, e, p);
+        toast("Signed in as " + e);
+      } catch (err) { toast(err.message); }
+    });
+
+    $("#signout").addEventListener("click", async () => {
+      try { await signOut(auth); toast("Signed out"); } catch (err) { toast(err.message); }
+    });
+
+    onAuthStateChanged(auth, async (user) => {
+      USER = user;
+      if (user) {
+        try {
+          const userSnap = await getDoc(doc(db, "users", user.uid));
+          const name = userSnap.exists() ? (userSnap.data().username || user.email) : user.email;
+          $("#user-info").textContent = "Signed in as: " + name;
+          $("#auth-controls").style.display = "none";
+          $("#signout").style.display = "inline-block";
+          // Admin button logic here
+          if (user.uid === "5oZCYzOHMrQvTNjBfUsAIV5zafL2") {
+            $("#admin-button").style.display = "inline-block";
+          } else {
+            $("#admin-button").style.display = "none";
+          }
+        } catch (e) {
+          console.error(e);
+          $("#user-info").textContent = "Signed in";
+        }
+      } else {
+        $("#user-info").textContent = "Not signed in";
+        $("#auth-controls").style.display = "flex";
+        $("#signout").style.display = "none";
+        $("#admin-button").style.display = "none";
+      }
+    });
+
+    function showPropertyModal(p) {
+      const modal = document.createElement("div");
+      modal.className = "fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4";
+      
+      const allImages = [p.imageUrl, ...(p.extraImages || [])].filter(Boolean);
+      if (allImages.length === 0) {
+          allImages.push(`https://placehold.co/800x540/D1E0E0/0B2447?text=No+Image`);
+      }
+
+      modal.innerHTML = `
+        <div class="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] flex flex-col">
+          <div class="p-4 border-b flex justify-between items-center">
+            <h3 class="text-xl font-bold text-primary">${p.title}</h3>
+            <button id="close-modal" class="text-2xl font-light text-slate-500 hover:text-slate-800">&times;</button>
+          </div>
+          <div class="p-4 overflow-y-auto">
+            <div class="relative mb-4">
+              <div class="overflow-hidden rounded-lg relative h-80 bg-slate-100">
+                <div id="carousel-track" class="flex h-full transition-transform duration-300 ease-in-out">
+                  ${allImages.map(url => `<img src="${url}" class="w-full h-full object-cover flex-shrink-0">`).join("")}
+                </div>
+              </div>
+              ${allImages.length > 1 ? `
+                <button id="prev" class="absolute top-1/2 left-2 -translate-y-1/2 bg-black/40 text-white p-1 rounded-full leading-none hover:bg-black/60">❮</button>
+                <button id="next" class="absolute top-1/2 right-2 -translate-y-1/2 bg-black/40 text-white p-1 rounded-full leading-none hover:bg-black/60">❯</button>
+              ` : ''}
+            </div>
+            <div class="space-y-3 text-slate-800">
+              <p class="text-2xl font-bold text-green-700">₦${Number(p.price||0).toLocaleString()}</p>
+              <p class="text-slate-700">${p.details || ""}</p>
+              <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-slate-600">
+                ${p.beds ? `<span>🛏️ ${p.beds} Beds</span>` : ""}
+                ${p.baths ? `<span>🛁 ${p.baths} Baths</span>` : ""}
+                ${p.sqft ? `<span>📐 ${p.sqft} sqft</span>` : ""}
+              </div>
+              ${p.location ? `<p class="text-slate-600">📍 ${p.location}</p>` : ""}
+            </div>
+          </div>
+        </div>
+      `;
+      
+      document.body.appendChild(modal);
+      document.body.style.overflow = 'hidden';
+
+      const closeModal = () => {
+        modal.remove();
+        document.body.style.overflow = 'auto';
+      };
+
+      modal.querySelector("#close-modal").addEventListener("click", closeModal);
+      modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+      if (allImages.length > 1) {
+        let index = 0;
+        const track = modal.querySelector("#carousel-track");
+        const prevBtn = modal.querySelector("#prev");
+        const nextBtn = modal.querySelector("#next");
+
+        const updateCarousel = () => { track.style.transform = `translateX(-${index * 100}%)`; };
+
+        prevBtn.addEventListener("click", () => {
+          index = (index - 1 + allImages.length) % allImages.length;
+          updateCarousel();
+        });
+        nextBtn.addEventListener("click", () => {
+          index = (index + 1) % allImages.length;
+          updateCarousel();
+        });
+      }
+    }
+
+
+function render(list) {
+      const propertiesEl = $("#properties-list");
+      const emptyEl = $("#empty");
+      propertiesEl.innerHTML = "";
+      if (!list.length) {
+        emptyEl.classList.remove("hidden");
+        return;
+      }
+      emptyEl.classList.add("hidden");
+      list.forEach((p) => {
+        const favKey = `fav_${p.id}`;
+        const isFav = !!localStorage.getItem(favKey);
+        const card = document.createElement("article");
+        card.className = "bg-white rounded-2xl border shadow-sm overflow-hidden flex flex-col";
+        card.innerHTML = `
+          <div class="relative">
+            <img src="${p.imageUrl || 'https://placehold.co/800x540/D1E0E0/0B2447?text=Property'}" alt="${p.title}" class="w-full h-56 object-cover">
+            <span class="absolute top-3 left-3 bg-primary text-white text-xs px-2.5 py-1 rounded-lg font-semibold">₦${Number(p.price || 0).toLocaleString()}</span>
+            <button data-fav class="absolute top-3 right-3 rounded-full bg-white/90 p-2 border">${isFav ? "★" : "☆"}</button>
+          </div>
+          <div class="p-4 flex-1 flex flex-col">
+            <h4 class="text-lg font-bold text-primary">${p.title}</h4>
+            <p class="text-slate-600 text-sm mt-1">${p.details || ""}</p>
+            <div class="text-slate-600 text-sm mt-2 flex flex-wrap gap-3">
+              ${p.beds ? `<span>🛏️ ${p.beds}</span>` : ""}
+              ${p.baths ? `<span>🛁 ${p.baths}</span>` : ""}
+              ${p.sqft ? `<span>📐 ${p.sqft} sqft</span>` : ""}
+              ${p.location ? `<span>📍 ${p.location}</span>` : ""}
+            </div>
+            <div class="mt-4 flex gap-2">
+              <button data-view class="px-3 py-2 rounded-lg border w-full text-center">Details</button>
+              <a href="https://wa.me/2349139015507?text=${encodeURIComponent('Hello, I am interested in this property: ' + p.title)}" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-lg bg-green-700 text-white w-full text-center">Enquire</a>
+            </div>
+          </div>
+        `;
+        card.querySelector("[data-fav]").addEventListener("click", () => {
+          if (localStorage.getItem(favKey)) {
+            localStorage.removeItem(favKey);
+          } else {
+            localStorage.setItem(favKey, "1");
+          }
+          render(list);
+        });
+        card.querySelector("[data-view]").addEventListener("click", (e) => {
+          e.preventDefault();
+          showPropertyModal(p);
+        });
+        propertiesEl.appendChild(card);
+      });
+    }
+
+    // Filters + sort
+    $("#filters").addEventListener("input", applyFilters);
+    $("#sort-select").addEventListener("change", applyFilters);
+
+    function applyFilters() {
+      const q = $("#filter-search").value.trim().toLowerCase();
+      const type = $("#filter-type").value;
+      const min = Number($("#filter-min").value || 0);
+      const max = Number($("#filter-max").value || Infinity);
+      let list = PROPERTIES.filter(p => {
+        const hay = `${p.title||''} ${p.details||''} ${p.location||''}`.toLowerCase();
+        const passQ = !q || hay.includes(q);
+        const passType = !type || (p.type||'').toLowerCase() === type.toLowerCase();
+        const price = Number(p.price || 0);
+        const passPrice = price >= min && price <= max;
+        return passQ && passType && passPrice;
+      });
+
+      const sort = $("#sort-select").value;
+      if (sort === "low") list.sort((a,b)=>Number(a.price||0)-Number(b.price||0));
+      if (sort === "high") list.sort((a,b)=>Number(b.price||0)-Number(a.price||0));
+      if (sort === "recent") list.sort((a,b)=>(b.timestamp?.seconds||0)-(a.timestamp?.seconds||0));
+
+      render(list);
+    }
+
+    $("#add-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (!USER) { toast("Please sign in"); return; }
+      const data = Object.fromEntries(new FormData(e.target).entries());
+      const price = Number(data.price) || 0;
+      if (price < 10000) {
+        toast("Price must be at least ₦10,000.");
+        return;
+      }
+      try {
+        const extraImages = data.extraImages ? data.extraImages.split(",").map(s => s.trim()).filter(Boolean) : [];
+        const propertyData = { 
+          ...data, 
+          price: price, 
+          beds: data.beds ? Number(data.beds) : null, 
+          baths: data.baths ? Number(data.baths) : null, 
+          sqft: data.sqft ? Number(data.sqft) : null, 
+          extraImages, 
+          timestamp: serverTimestamp(), 
+          addedBy: USER.uid };
+        await addDoc(collection(db, "properties"), propertyData);
+        e.target.reset();
+        toast("Property added");
+      } catch (err) { toast("Error: " + err.message); }
+    });
+
+    // Listen to Firestore
+    const qRef = query(collection(db, "properties"), orderBy("timestamp", "desc"));
+    onSnapshot(qRef, (snap) => {
+      PROPERTIES = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      hideLoader();
+      applyFilters();
+    }, (err) => {
+      console.error(err);
+      hideLoader();
+      toast("Failed to load properties. Check Firestore rules.");
+    });
+    // Admin PIN + UID check
+    $("#admin-button").addEventListener("click", () => {
+      if (!USER) {
+        toast("Please sign in first.");
+        return;
+      }
+      const pin = prompt("Enter Admin PIN to access admin panel:");
+      if (pin === "OMO2025") {
+        // Only show panel if this account is actually admin
+        if (USER.uid === "5oZCYzOHMrQvTNjBfUsAIV5zafL2") {
+          ADMIN = true;
+          $("#admin-panel").classList.remove("hidden");
+          toast("Admin access granted");
+        } else {
+          toast("You are signed in, but not an admin.");
+        }
+      } else {
+        toast("Wrong PIN");
+      }
+    });
+
+    // Set year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.addEventListener("DOMContentLoaded", () => {
+  // ...all your script code here...
+});
+  </script>
+
+</body></html>
