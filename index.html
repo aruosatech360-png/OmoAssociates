@@ -83,9 +83,14 @@
   </header>
   
   <!-- Hero Section -->
-  <section class="relative">
-    <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=2400&auto=format&fit=crop" class="w-full h-[70vh] object-cover" alt="Hero image">
-    <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
+  <section class="relative h-[70vh] bg-slate-800">
+    <div id="hero-slideshow-container" class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=2400&auto=format&fit=crop" class="w-full h-full object-cover absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-100" alt="Modern living room">
+      <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=2400&auto=format&fit=crop" class="w-full h-full object-cover absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" alt="Luxury house exterior">
+      <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2400&auto=format&fit=crop" class="w-full h-full object-cover absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" alt="Cozy bedroom">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2400&auto=format&fit=crop" class="w-full h-full object-cover absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" alt="Spacious kitchen">
+    </div>
+    <div class="absolute inset-0 bg-black/50 flex items-center justify-center z-10">
       <div class="text-center text-white px-4">
         <h1 class="text-3xl sm:text-5xl font-extrabold">Find Your Dream Home with OmoAssociates</h1>
         <p class="mt-3 sm:text-lg text-gray-200">Trusted real estate services across Nigeria.</p>
@@ -101,7 +106,7 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
       <div class="p-6 bg-white rounded-2xl shadow"><h3 class="font-bold text-lg text-green-700 mb-2">Property Sales</h3><p class="text-slate-600">Buy and sell properties with confidence. Verified listings and transparent deals.</p></div>
       <div class="p-6 bg-white rounded-2xl shadow"><h3 class="font-bold text-lg text-green-700 mb-2">Rentals</h3><p class="text-slate-600">Affordable rental options across Nigeria, with easy agreements and trusted landlords.</p></div>
-      <div class="p-6 bg-white rounded-2xl shadow"><h3 class="font-bold text-lg text-green-700 mb-2">Consulting</h3><p class="text-slate-600">Expert real estate advice, investment consulting, and property management services.</p></div>
+      <div class="p-6 bg-white rounded-2xl shadow"><h3 class="font-bold text-lg text-green-700 mb-2">Consulting</h3><p class="text-slate-600">Expert real estate advice, investment consulting, property management and development services.</p></div>
     </div>
   </section>
 
@@ -116,14 +121,26 @@
       </select>
     </div>
     <!-- Filters -->
-    <form id="filters" class="mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+    <form id="filters" class="mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-3">
       <input id="filter-search" type="text" placeholder="Search title or details..." class="w-full px-3 py-2 rounded-lg border lg:col-span-2">
+      <input id="filter-location" type="text" placeholder="Location..." class="w-full px-3 py-2 rounded-lg border">
       <select id="filter-type" class="w-full px-3 py-2 rounded-lg border">
-        <option value="">Any type</option>
-        <option value="house">House</option>
+        <option value="">All Property Types</option>
+        <option value="bungalow">Bungalow</option>
+        <option value="detached-duplex">Detached Duplex</option>
+        <option value="semi-detached-duplex">Semi-detached Duplex</option>
+        <option value="terrace-house">Terrace House</option>
         <option value="apartment">Apartment</option>
-        <option value="duplex">Duplex</option>
+        <option value="penthouse">Penthouse</option>
         <option value="land">Land</option>
+      </select>
+      <select id="filter-rooms" class="w-full px-3 py-2 rounded-lg border">
+        <option value="">Any Rooms</option>
+        <option value="1">1+ Room</option>
+        <option value="2">2+ Rooms</option>
+        <option value="3">3+ Rooms</option>
+        <option value="4">4+ Rooms</option>
+        <option value="5">5+ Rooms</option>
       </select>
       <input id="filter-min" type="number" min="10000" placeholder="Min price (e.g. 10,000)" class="w-full px-3 py-2 rounded-lg border">
       <input id="filter-max" type="number" min="10000" placeholder="Max price" class="w-full px-3 py-2 rounded-lg border">
@@ -151,10 +168,10 @@
       <h3 class="text-xl font-bold text-primary mb-4">Add a Property</h3>
       <form id="add-form" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <input class="px-3 py-2 rounded-lg border" name="title" placeholder="Title" required>
-        <input class="px-3 py-2 rounded-lg border" name="type" placeholder="Type (e.g. house, land)" required>
+        <input class="px-3 py-2 rounded-lg border" name="type" placeholder="Type (e.g. bungalow, apartment)" required>
         <input class="px-3 py-2 rounded-lg border" name="location" placeholder="Location" required>
         <input class="px-3 py-2 rounded-lg border" type="number" name="price" placeholder="Price" required min="10000">
-        <input class="px-3 py-2 rounded-lg border" type="number" name="beds" placeholder="Beds">
+        <input class="px-3 py-2 rounded-lg border" type="number" name="rooms" placeholder="Rooms">
         <input class="px-3 py-2 rounded-lg border" type="number" name="baths" placeholder="Baths">
         <input class="px-3 py-2 rounded-lg border" type="number" name="sqft" placeholder="Sqft">
         <input class="px-3 py-2 rounded-lg border sm:col-span-2" name="details" placeholder="Short details" required>
@@ -168,7 +185,7 @@
   <!-- Contact Form -->
   <section class="bg-white border-t">
     <div class="mx-auto max-w-7xl px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div><h3 class="text-2xl font-bold text-primary">Talk to us</h3><p class="text-slate-600 mt-1">Want to let out/sell your property? Drop us a message and we’ll get back quickly.</p>
+      <div><h3 class="text-2xl font-bold text-primary">Talk to us</h3><p class="text-slate-600 mt-1">Want to let out, lease or sell your property? Drop us a message and we’ll get back quickly.</p>
         <ul class="mt-6 text-slate-600 space-y-2">
           <li><strong>Phone:</strong> <a href="https://wa.me/+2349139015507" target="_blank" rel="noopener noreferrer" class="hover:underline text-blue-700">OmoAssociates Staff</a></li>
           <li><strong>Email:</strong> <a href="mailto:info@omoassociates.com" class="hover:underline text-blue-700">info@omoassociates.com</a></li>
@@ -191,12 +208,12 @@
     <h2 class="text-2xl sm:text-3xl font-bold text-primary text-center">About Us</h2>
     <p class="mt-3 text-slate-700 max-w-2xl mx-auto text-center">
       At OmoAssociates, we believe in more than just transactions — we create connections. 
-      With years of experience in real estate, We wear transparency like a gold medal, 
+      With over 10 years of experience in real estate, We wear transparency like a gold medal, 
       providing Real estate services wholistically. 
       By putting client's satisfaction first. We tell you what you ought to know, not necessarily what you want to hear, know or do. 
       We would rather forfeit the reward, than leave your mouth sour. Giving you the best and most rewarding real estate experience. 
       Our mission is to guide you through one of the most important decisions of your life with honesty, clarity, and dedication. 
-      From modern apartments to sprawling family homes, we’re here to help you find the right place to call your own.
+      From modern apartments to sprawling family homes, we’re here to help you find or build the right place to call your own.
     </p>
 
     <!-- Team Section -->
@@ -214,7 +231,7 @@
       <div class="bg-white shadow-sm rounded-xl p-6 text-center">
         <img src="Mercy Otsonu.jpg" alt="Team member" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
         <h4 class="text-lg font-semibold text-primary">Mercy Otsonu</h4>
-        <p class="text-slate-600 text-sm">Client Relations Manager</p>
+        <p class="text-slate-600 text-sm">Client Relationship Manager</p>
       </div>
     </div>
   </div>
@@ -346,7 +363,7 @@
               <p class="text-2xl font-bold text-green-700">₦${Number(p.price||0).toLocaleString()}</p>
               <p class="text-slate-700 break-words">${p.details || ""}</p>
               <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-slate-600 break-words">
-                ${p.beds ? `<span>🛏️ ${p.beds} Beds</span>` : ""}
+                ${p.rooms ? `<span>🛏️ ${p.rooms} Rooms</span>` : ""}
                 ${p.baths ? `<span>🛁 ${p.baths} Baths</span>` : ""}
                 ${p.sqft ? `<span>📐 ${p.sqft} sqft</span>` : ""}
               </div>
@@ -411,14 +428,14 @@ function render(list) {
             <h4 class="text-lg font-bold text-primary break-words">${p.title}</h4>
             <p class="text-slate-600 text-sm mt-1 break-words">${p.details || ""}</p>
             <div class="text-slate-600 text-sm mt-2 flex flex-wrap gap-3 break-words">
-              ${p.beds ? `<span>🛏️ ${p.beds}</span>` : ""}
-              ${p.baths ? `<span>🛁 ${p.baths}</span>` : ""}
+              ${p.rooms ? `<span>🛏️ ${p.rooms} Rooms</span>` : ""}
+              ${p.baths ? `<span>🛁 ${p.baths} Baths</span>` : ""}
               ${p.sqft ? `<span>📐 ${p.sqft} sqft</span>` : ""}
               ${p.location ? `<span>📍 ${p.location}</span>` : ""}
             </div>
             <div class="mt-4 flex gap-2">
               <button data-view class="px-3 py-2 rounded-lg border w-full text-center">Details</button>
-              <a href="https://wa.me/2349139015507?text=${encodeURIComponent('Hello, I am interested in this property: ' + p.title)}" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-lg bg-green-700 text-white w-full text-center">Enquire</a>
+              <a href="https://wa.me/2349038010788?text=${encodeURIComponent('Hello, I am interested in this property: ' + p.title)}" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-lg bg-green-700 text-white w-full text-center">Enquire</a>
             </div>
           </div>
         `;
@@ -444,16 +461,20 @@ function render(list) {
 
     function applyFilters() {
       const q = $("#filter-search").value.trim().toLowerCase();
+      const location = $("#filter-location").value.trim().toLowerCase();
       const type = $("#filter-type").value;
+      const rooms = Number($("#filter-rooms").value || 0);
       const min = Number($("#filter-min").value || 0);
       const max = Number($("#filter-max").value || Infinity);
       let list = PROPERTIES.filter(p => {
-        const hay = `${p.title||''} ${p.details||''} ${p.location||''}`.toLowerCase();
+        const hay = `${p.title||''} ${p.details||''}`.toLowerCase();
         const passQ = !q || hay.includes(q);
+        const passLocation = !location || (p.location||'').toLowerCase().includes(location);
         const passType = !type || (p.type||'').toLowerCase() === type.toLowerCase();
+        const passRooms = !rooms || (p.rooms && p.rooms >= rooms);
         const price = Number(p.price || 0);
         const passPrice = price >= min && price <= max;
-        return passQ && passType && passPrice;
+        return passQ && passLocation && passType && passRooms && passPrice;
       });
 
       const sort = $("#sort-select").value;
@@ -478,8 +499,8 @@ function render(list) {
         const propertyData = { 
           ...data, 
           price: price, 
-          beds: data.beds ? Number(data.beds) : null, 
-          baths: data.baths ? Number(data.baths) : null, 
+          rooms: data.rooms ? Number(data.rooms) : null,
+          baths: data.baths ? Number(data.baths) : null,
           sqft: data.sqft ? Number(data.sqft) : null, 
           extraImages, 
           timestamp: serverTimestamp(), 
@@ -493,7 +514,14 @@ function render(list) {
     // Listen to Firestore
     const qRef = query(collection(db, "properties"), orderBy("timestamp", "desc"));
     onSnapshot(qRef, (snap) => {
-      PROPERTIES = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      PROPERTIES = snap.docs.map(d => {
+        const data = d.data();
+        // For backward compatibility, if 'rooms' doesn't exist but 'beds' does, use its value.
+        if (data.rooms === undefined && data.beds !== undefined) {
+          data.rooms = data.beds;
+        }
+        return { id: d.id, ...data };
+      });
       hideLoader();
       applyFilters();
     }, (err) => {
@@ -536,6 +564,24 @@ function render(list) {
       openIcon.classList.toggle("hidden");
       closeIcon.classList.toggle("hidden");
     });
+
+    // Hero Slideshow
+    const slideshowContainer = document.querySelector('#hero-slideshow-container');
+    if (slideshowContainer) {
+        const images = slideshowContainer.querySelectorAll('img');
+        if (images.length > 1) {
+            let currentImageIndex = 0;
+            setInterval(() => {
+                images[currentImageIndex].classList.remove('opacity-100');
+                images[currentImageIndex].classList.add('opacity-0');
+
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+
+                images[currentImageIndex].classList.remove('opacity-0');
+                images[currentImageIndex].classList.add('opacity-100');
+            }, 5000); // Change image every 5 seconds
+        }
+    }
 
 
     document.addEventListener("DOMContentLoaded", () => {
