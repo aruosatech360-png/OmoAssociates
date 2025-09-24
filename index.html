@@ -35,23 +35,12 @@
   #loading-overlay {
     transition: opacity 0.5s ease-out;
   }
-  @keyframes custom-bounce {
-    0%, 100% {
-      transform: translateY(-25%);
-      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-    }
-    50% {
-      transform: translateY(0);
-      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-    }
-  }
-  .animate-custom-bounce { animation: custom-bounce 1s infinite; }
   </style>
 
 </head>
 <body class="bg-slate-50 text-slate-800">
-  <div id="loading-overlay" class="fixed inset-0 bg-slate-50 z-50 flex items-center justify-center">
-    <img src="OmoAssociates.png" alt="OmoAssociates Logo" class="h-20 w-20 animate-custom-bounce">
+  <div id="loading-overlay" class="fixed inset-0 bg-slate-50 z-50 overflow-hidden">
+    <img src="OmoAssociates.png" alt="OmoAssociates Logo" class="h-20 w-20">
   </div>
   <header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b md:relative">
     <div class="mx-auto max-w-7xl px-4 py-4 flex items-center justify-between ">
@@ -116,12 +105,20 @@
       <h2 class="text-2xl sm:text-3xl font-bold text-primary">Featured Properties</h2>
       <select id="sort-select" class="px-3 py-2 rounded-lg border text-sm">
         <option value="recent">Sort: Recent</option>
-        <option value="low">Sort: Price (Low → High)</option>
-        <option value="high">Sort: Price (High → Low)</option>
+        <option value="low">Price (Low → High)</option>
+        <option value="high">Price (High → Low)</option>
       </select>
     </div>
     <!-- Filters -->
-    <form id="filters" class="mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-3">
+    <form id="filters" class="mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-8 gap-3">
+      <select id="filter-status" class="w-full px-3 py-2 rounded-lg border">
+        <option value="">All Statuses</option>
+        <option value="for-sale">For Sale</option>
+        <option value="to-let">To Let</option>
+        <option value="to-lease">To Lease</option>
+        <option value="short-let">Short Let</option>
+        <option value="joint-venture">Joint Venture</option>
+      </select>
       <input id="filter-search" type="text" placeholder="Search title or details..." class="w-full px-3 py-2 rounded-lg border lg:col-span-2">
       <input id="filter-location" type="text" placeholder="Location..." class="w-full px-3 py-2 rounded-lg border">
       <select id="filter-type" class="w-full px-3 py-2 rounded-lg border">
@@ -145,7 +142,8 @@
       <input id="filter-min" type="number" min="10000" placeholder="Min price (e.g. 10,000)" class="w-full px-3 py-2 rounded-lg border">
       <input id="filter-max" type="number" min="10000" placeholder="Max price" class="w-full px-3 py-2 rounded-lg border">
     </form>
-    <div id="properties-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    <div id="properties-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div> 
+    <div id="view-more-container" class="col-span-full text-center mt-8"></div>
     <div id="empty" class="hidden col-span-full text-center text-slate-500 mt-6">No properties found.</div>
   </section>
 
@@ -171,6 +169,14 @@
         <input class="px-3 py-2 rounded-lg border" name="type" placeholder="Type (e.g. bungalow, apartment)" required>
         <input class="px-3 py-2 rounded-lg border" name="location" placeholder="Location" required>
         <input class="px-3 py-2 rounded-lg border" type="number" name="price" placeholder="Price" required min="10000">
+        <select class="px-3 py-2 rounded-lg border" name="status" required>
+          <option value="">Select Status</option>
+          <option value="for-sale">For Sale</option>
+          <option value="to-let">To Let</option>
+          <option value="to-lease">To Lease</option>
+          <option value="short-let">Short Let</option>
+          <option value="joint-venture">Joint Venture</option>
+        </select>
         <input class="px-3 py-2 rounded-lg border" type="number" name="rooms" placeholder="Rooms">
         <input class="px-3 py-2 rounded-lg border" type="number" name="baths" placeholder="Baths">
         <input class="px-3 py-2 rounded-lg border" type="number" name="sqft" placeholder="Sqft">
@@ -185,10 +191,10 @@
   <!-- Contact Form -->
   <section class="bg-white border-t">
     <div class="mx-auto max-w-7xl px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div><h3 class="text-2xl font-bold text-primary">Talk to us</h3><p class="text-slate-600 mt-1">Want to let out, lease or sell your property? Drop us a message and we’ll get back quickly.</p>
+      <div><h3 class="text-2xl font-bold text-primary">Talk to us</h3><p class="text-slate-600 mt-1">Want to let out, lease or sell your property? Drop us a message and we’ll get back quickly.</p><p class="text-slate-600 mt-2">To market your property, please send images via email or WhatsApp.</p>
         <ul class="mt-6 text-slate-600 space-y-2">
-          <li><strong>Phone:</strong> <a href="https://wa.me/+2349139015507" target="_blank" rel="noopener noreferrer" class="hover:underline text-blue-700">OmoAssociates Staff</a></li>
-          <li><strong>Email:</strong> <a href="mailto:info@omoassociates.com" class="hover:underline text-blue-700">info@omoassociates.com</a></li>
+          <li><strong>WhatsApp:</strong> <a href="https://wa.me/2348026909691" target="_blank" rel="noopener noreferrer" class="hover:underline text-blue-700">OmoAssociates Staff</a></li>
+          <li><strong>Email:</strong> <a href="mailto:omoosaghaeassociates@gmail.com" class="hover:underline text-blue-700">omoosaghaeassociates@gmail.com</a></li>
           <li><strong>Office:</strong> <a href="https://maps.app.goo.gl/HpwYzY2axxZT4TMr9?g_st=aw" target="_blank" rel="noopener noreferrer" class="hover:underline text-blue-700">OmoAssociates Office</a></li>
         </ul>
       </div>
@@ -208,7 +214,7 @@
     <h2 class="text-2xl sm:text-3xl font-bold text-primary text-center">About Us</h2>
     <p class="mt-3 text-slate-700 max-w-2xl mx-auto text-center">
       At OmoAssociates, we believe in more than just transactions — we create connections. 
-      With over 10 years of experience in real estate, We wear transparency like a gold medal, 
+      With over 15 years of experience in real estate, We wear transparency like a gold medal, 
       providing Real estate services wholistically. 
       By putting client's satisfaction first. We tell you what you ought to know, not necessarily what you want to hear, know or do. 
       We would rather forfeit the reward, than leave your mouth sour. Giving you the best and most rewarding real estate experience. 
@@ -245,11 +251,6 @@
     </a></p>
   </footer>
 
-  <!--Bouncing Logo -->
-  <div class="py-8 flex justify-center">
-    <img src="OmoAssociates.png" alt="OmoAssociates Logo" class="h-12 w-12 animate-custom-bounce opacity-70">
-  </div>
-
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
@@ -268,15 +269,48 @@
     const db = getFirestore(app);
     const auth = getAuth(app);
     let USER = null;
+    let currentDisplayLimit = 6; // Initial limit for properties displayed
     let ADMIN = false;
     let PROPERTIES = [];
     const $ = (q) => document.querySelector(q);
     const toast = (msg) => alert(msg);
 
+    // --- Bouncing Logo Animation ---
+    const loaderStartTime = Date.now();
+    const minLoaderTime = 2000; // Minimum display time in milliseconds (e.g., 2 seconds)
+
+    const loaderOverlay = $("#loading-overlay");
+    const loaderImg = loaderOverlay.querySelector("img");
+    let animationFrameId;
+
+    function startBouncingLogo() {
+      loaderImg.style.position = 'absolute';
+      const speed = 1.5; // Adjust speed here
+      let x = loaderOverlay.clientWidth / 2 - loaderImg.clientWidth / 2;
+      let y = loaderOverlay.clientHeight / 2 - loaderImg.clientHeight / 2;
+      let dx = speed;
+      let dy = speed;
+
+      function animate() {
+        x += dx;
+        y += dy;
+
+        if (x + loaderImg.clientWidth >= loaderOverlay.clientWidth || x <= 0) dx = -dx;
+        if (y + loaderImg.clientHeight >= loaderOverlay.clientHeight || y <= 0) dy = -dy;
+
+        loaderImg.style.transform = `translate(${x}px, ${y}px)`;
+        animationFrameId = requestAnimationFrame(animate);
+      }
+      animate();
+    }
+    startBouncingLogo();
+    // --- End Bouncing Logo Animation ---
+
     const hideLoader = () => {
       const loader = $("#loading-overlay");
       if (loader) {
         loader.style.opacity = '0';
+        if (animationFrameId) cancelAnimationFrame(animationFrameId); // Stop animation
         setTimeout(() => {
           loader.style.display = 'none';
         }, 500); // Corresponds to CSS transition duration
@@ -410,16 +444,23 @@
     }
 
 
-function render(list) {
+    function renderProperties(propertiesToDisplay) {
       const propertiesEl = $("#properties-list");
       const emptyEl = $("#empty");
+      const viewMoreContainer = $("#view-more-container");
+
       propertiesEl.innerHTML = "";
-      if (!list.length) {
+      viewMoreContainer.innerHTML = ""; // Clear previous view more button
+
+      const displayedList = propertiesToDisplay.slice(0, currentDisplayLimit);
+
+      if (!displayedList.length) {
         emptyEl.classList.remove("hidden");
         return;
       }
       emptyEl.classList.add("hidden");
-      list.forEach((p) => {
+
+      displayedList.forEach((p) => {
         const favKey = `fav_${p.id}`;
         const isFav = !!localStorage.getItem(favKey);
         const card = document.createElement("article");
@@ -441,7 +482,7 @@ function render(list) {
             </div>
             <div class="mt-4 flex gap-2">
               <button data-view class="px-3 py-2 rounded-lg border w-full text-center">Details</button>
-              <a href="https://wa.me/2349038010788?text=${encodeURIComponent('Hello, I am interested in this property: ' + p.title)}" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-lg bg-green-700 text-white w-full text-center">Enquire</a>
+              <a href="https://wa.me/2348026909691?text=${encodeURIComponent('Hello, I am interested in this property: ' + p.title)}" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-lg bg-green-700 text-white w-full text-center">Enquire</a>
             </div>
           </div>
         `;
@@ -449,9 +490,9 @@ function render(list) {
           if (localStorage.getItem(favKey)) {
             localStorage.removeItem(favKey);
           } else {
-            localStorage.setItem(favKey, "1");
+            localStorage.setItem(favKey, "1"); // Store a simple value
           }
-          render(list);
+          renderProperties(propertiesToDisplay); // Re-render to update favorite icon
         });
         card.querySelector("[data-view]").addEventListener("click", (e) => {
           e.preventDefault();
@@ -459,6 +500,19 @@ function render(list) {
         });
         propertiesEl.appendChild(card);
       });
+
+      // Add "View More" button if there are more properties than currently displayed
+      if (propertiesToDisplay.length > currentDisplayLimit) {
+        const viewMoreButton = document.createElement("button");
+        viewMoreButton.id = "view-more-button";
+        viewMoreButton.className = "mt-6 inline-block bg-primary text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700";
+        viewMoreButton.textContent = `View More (${propertiesToDisplay.length - currentDisplayLimit} properties)`;
+        viewMoreButton.addEventListener("click", () => {
+          currentDisplayLimit = propertiesToDisplay.length; // Show all remaining
+          applyFilters(); // Re-apply filters to re-render with new limit
+        });
+        viewMoreContainer.appendChild(viewMoreButton);
+      }
     }
 
     // Filters + sort
@@ -472,6 +526,7 @@ function render(list) {
       const rooms = Number($("#filter-rooms").value || 0);
       const min = Number($("#filter-min").value || 0);
       const max = Number($("#filter-max").value || Infinity);
+      const status = $("#filter-status").value; // New status filter
       let list = PROPERTIES.filter(p => {
         const hay = `${p.title||''} ${p.details||''}`.toLowerCase();
         const passQ = !q || hay.includes(q);
@@ -480,15 +535,16 @@ function render(list) {
         const passRooms = !rooms || (p.rooms && p.rooms >= rooms);
         const price = Number(p.price || 0);
         const passPrice = price >= min && price <= max;
-        return passQ && passLocation && passType && passRooms && passPrice;
+        const passStatus = !status || (p.status || '').toLowerCase() === status.toLowerCase();
+        return passQ && passLocation && passType && passRooms && passPrice && passStatus;
       });
 
       const sort = $("#sort-select").value;
       if (sort === "low") list.sort((a,b)=>Number(a.price||0)-Number(b.price||0));
       if (sort === "high") list.sort((a,b)=>Number(b.price||0)-Number(a.price||0));
       if (sort === "recent") list.sort((a,b)=>(b.timestamp?.seconds||0)-(a.timestamp?.seconds||0));
-
-      render(list);
+      
+      renderProperties(list);
     }
 
     $("#add-form").addEventListener("submit", async (e) => {
@@ -528,8 +584,15 @@ function render(list) {
         }
         return { id: d.id, ...data };
       });
-      hideLoader();
-      applyFilters();
+      currentDisplayLimit = 6; // Reset limit when new data comes in
+      
+      const elapsedTime = Date.now() - loaderStartTime;
+      const remainingTime = Math.max(0, minLoaderTime - elapsedTime);
+
+      setTimeout(() => {
+        hideLoader();
+        applyFilters();
+      }, remainingTime);
     }, (err) => {
       console.error(err);
       hideLoader();
@@ -589,10 +652,17 @@ function render(list) {
         }
     }
 
-
     document.addEventListener("DOMContentLoaded", () => {
-  // ...all your script code here...
-});
+      // Event listener for "Browse Listings" button in Hero
+      const browseListingsBtn = document.querySelector('a[href="#properties"]');
+      if (browseListingsBtn) {
+        browseListingsBtn.addEventListener('click', (e) => {
+          // Do not prevent default to allow scrolling to #properties
+          currentDisplayLimit = Infinity; // Show all properties
+          applyFilters();
+        });
+      }
+    });
   </script>
 
 </body></html>
