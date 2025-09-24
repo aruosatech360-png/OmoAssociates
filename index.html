@@ -168,7 +168,6 @@
         <input class="px-3 py-2 rounded-lg border" name="title" placeholder="Title" required>
         <input class="px-3 py-2 rounded-lg border" name="type" placeholder="Type (e.g. bungalow, apartment)" required>
         <input class="px-3 py-2 rounded-lg border" name="location" placeholder="Location" required>
-        <input class="px-3 py-2 rounded-lg border" type="number" name="price" placeholder="Price" required min="10000">
         <select class="px-3 py-2 rounded-lg border" name="status" required>
           <option value="">Select Status</option>
           <option value="for-sale">For Sale</option>
@@ -177,6 +176,7 @@
           <option value="short-let">Short Let</option>
           <option value="joint-venture">Joint Venture</option>
         </select>
+        <input class="px-3 py-2 rounded-lg border" type="number" name="price" placeholder="Price" required min="10000">
         <input class="px-3 py-2 rounded-lg border" type="number" name="rooms" placeholder="Rooms">
         <input class="px-3 py-2 rounded-lg border" type="number" name="baths" placeholder="Baths">
         <input class="px-3 py-2 rounded-lg border" type="number" name="sqft" placeholder="Sqft">
@@ -191,9 +191,12 @@
   <!-- Contact Form -->
   <section class="bg-white border-t">
     <div class="mx-auto max-w-7xl px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div><h3 class="text-2xl font-bold text-primary">Talk to us</h3><p class="text-slate-600 mt-1">Want to let out, lease or sell your property? Drop us a message and we’ll get back quickly.</p><p class="text-slate-600 mt-2">To market your property, please send images via email or WhatsApp.</p>
+      <div><h3 class="text-2xl font-bold text-primary">Talk to us</h3><p class="text-slate-600 mt-1">Want to let out, lease or sell your property? Drop us a message and we’ll get back quickly.</p><p class="text-slate-600 mt-2"></p>
+       <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-md mb-8" role="alert">
+            <p> <strong>Note:</strong> To market your property, please send images via email or WhatsApp.</p>
+        </div>
         <ul class="mt-6 text-slate-600 space-y-2">
-          <li><strong>WhatsApp:</strong> <a href="https://wa.me/2348026909691" target="_blank" rel="noopener noreferrer" class="hover:underline text-blue-700">OmoAssociates Staff</a></li>
+          <li><strong>WhatsApp:</strong> <a href="https://wa.me/2348026909691" target="_blank" rel="noopener noreferrer" class="hover:underline text-blue-700">OmoAssociates Customer Support</a></li>
           <li><strong>Email:</strong> <a href="mailto:omoosaghaeassociates@gmail.com" class="hover:underline text-blue-700">omoosaghaeassociates@gmail.com</a></li>
           <li><strong>Office:</strong> <a href="https://maps.app.goo.gl/HpwYzY2axxZT4TMr9?g_st=aw" target="_blank" rel="noopener noreferrer" class="hover:underline text-blue-700">OmoAssociates Office</a></li>
         </ul>
